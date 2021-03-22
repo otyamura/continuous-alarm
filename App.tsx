@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import MakeSound from './components/MakeSound';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World!</Text>
+      <Text>こんにちは!</Text>
+      <MakeSound />
       <StatusBar style="auto" />
     </View>
   );
