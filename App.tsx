@@ -3,10 +3,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MakeSound from './components/MakeSound';
 import DateTimePicker from './components/DateTimePicker';
+import LocalNotification from './components/LocalNortification';
 
 export default function App() {
+
   return (
     <View style={styles.container}>
+      <LocalNotification />
       <MakeSound />
       <DateTimePicker />
       <StatusBar style="auto" />
