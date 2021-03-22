@@ -12,6 +12,14 @@ export default function LocalNotification() {
   );
 }
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false
+  }),
+});
+
 const scheduleNotificationAsync = async () => {
   await Notifications.scheduleNotificationAsync({
     content: {
