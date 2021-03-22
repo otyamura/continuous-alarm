@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import { Audio } from 'expo-av';
 
 export default function MakeSound() {
@@ -40,7 +40,6 @@ export default function MakeSound() {
       <Button title='pause sound' onPress={pauseSound} />
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
