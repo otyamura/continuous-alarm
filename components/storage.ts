@@ -15,14 +15,14 @@ export const deleteDataList = () => {
   });
 }
 
-export const getDateList = (date: Date) => {
+export const setDateList = (date: Date) => {
   storage
     .load({ key: 'Dates' })
     .then(data => {
       data.push(date);
       const dateList :Date[] = data;
       console.log(dateList);
-      setDateList(dateList);
+      saveDateList(dateList);
     })
     .catch(err => {
       let dateList :Date[] = [];
@@ -34,7 +34,7 @@ export const getDateList = (date: Date) => {
     });
 }
 
-export const setDateList = async (dateList: Date[]) => {
+export const saveDateList = async (dateList: Date[]) => {
   console.log('promise wakaran');
   storage.save({
     key: 'Dates',

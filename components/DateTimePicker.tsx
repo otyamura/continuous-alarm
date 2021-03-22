@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { playSound } from './MakeSound';
-import { storage, getDateList } from './storage';
+import { storage, setDateList } from './storage';
 // import { deleteDataList } from './storage';
 
 const DateTimePicker = () => {
@@ -18,7 +18,7 @@ const DateTimePicker = () => {
   };
 
   const handleConfirm = (date :Date) => {
-    getDateList(date);
+    setDateList(date);
     hideDatePicker();
   };
 
