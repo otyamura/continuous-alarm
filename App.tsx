@@ -7,7 +7,6 @@ import DateTimePicker from './components/DateTimePicker';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>こんにちは!</Text>
       <MakeSound />
       <DateTimePicker />
       <StatusBar style="auto" />

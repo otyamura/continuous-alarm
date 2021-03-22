@@ -35,7 +35,6 @@ export const setDateList = (date: Date) => {
 }
 
 export const saveDateList = async (dateList: Date[]) => {
-  console.log('promise wakaran');
   storage.save({
     key: 'Dates',
     data: dateList,
