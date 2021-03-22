@@ -15,7 +15,7 @@ export const deleteDataList = () => {
   });
 }
 
-export const setDateList = (date: Date) => {
+export const addDateList = (date: Date) => {
   storage
     .load({ key: 'Dates' })
     .then(data => {
