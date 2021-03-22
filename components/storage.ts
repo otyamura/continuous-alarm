@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
+import { scheduleNotificationAsync } from './LocalNortification';
+
 
 export const storage: Storage = new Storage({
-  size: 1000,
+  size: 100,
   storageBackend: AsyncStorage,
   defaultExpires: null,
   enableCache: true
@@ -11,32 +13,28 @@ export const storage: Storage = new Storage({
 
 export const deleteDataList = () => {
   storage.remove({
-    key : 'Dates'
+    key: 'Date'
   });
 }
 
-export const addDateList = (date: Date) => {
-  storage
-    .load({ key: 'Dates' })
-    .then(data => {
-      data.push(date);
-      const dateList :Date[] = data;
-      console.log(dateList);
-      saveDateList(dateList);
+export const loadDate = async () => {
+  const date = await storage
+    .load({ key: 'Date' })
+    .then(res => {
+      const date = new Date(res);
+      console.log(date);
+      scheduleNotificationAsync(date);
+      return date;
+    }).catch(err => {
+      console.log(err);
+      return new Date();
     })
-    .catch(err => {
-      let dateList :Date[] = [];
-      dateList.push(date);
-      storage.save({
-        key: 'Dates',
-        data: dateList
-      })
-    });
+  return date;
 }
 
-export const saveDateList = async (dateList: Date[]) => {
+export const saveDate = async (date: Date) => {
   storage.save({
-    key: 'Dates',
-    data: dateList,
+    key: 'Date',
+    data: date,
   });
 }

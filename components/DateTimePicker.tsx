@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { playSound } from './MakeSound';
-import { storage, addDateList } from './storage';
+import { loadDate, saveDate } from './storage';
 // import { deleteDataList } from './storage';
 
 const DateTimePicker = () => {
@@ -17,13 +17,14 @@ const DateTimePicker = () => {
     setDatePickerVisible(false);
   };
 
-  const handleConfirm = (date :Date) => {
-    addDateList(date);
+  const handleConfirm = (date: Date) => {
+    saveDate(date);
     hideDatePicker();
   };
 
   return (
     <View>
+      <Button title='load storage date' onPress={loadDate} />
       <Button title='show date picker' onPress={showDatePicker} />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
