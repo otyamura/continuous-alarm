@@ -2,30 +2,31 @@ import * as React from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { Audio } from 'expo-av';
 
+const sound = new Audio.Sound();
+let isPlaying :boolean = false;
+
+export const playSound = async () => {
+  if (!isPlaying) {
+    console.log('Loading sound');
+    await sound.loadAsync(require('../assets/mp3/Alarm.mp3'));
+    console.log('Playing sound');
+    await sound.setIsLoopingAsync(true);
+    await sound.playAsync();
+    isPlaying = true;
+  }
+}
+
+export const pauseSound = async () => {
+  if (isPlaying) {
+    console.log('Pausing sound');
+    await sound.pauseAsync();
+    console.log('unloading sound');
+    await sound.unloadAsync();
+    isPlaying = false;
+  }
+}
+
 export default function MakeSound() {
-  const sound = new Audio.Sound();
-  let isPlaying :boolean = false;
-  async function playSound() {
-    if (!isPlaying) {
-      console.log('Loading sound');
-      await sound.loadAsync(require('../assets/mp3/Alarm.mp3'));
-      console.log('Playing sound');
-      await sound.setIsLoopingAsync(true);
-      await sound.playAsync();
-      isPlaying = true;
-    }
-  }
-
-  async function pauseSound() {
-    if (isPlaying) {
-      console.log('Pausing sound');
-      await sound.pauseAsync();
-      console.log('unloading sound');
-      await sound.unloadAsync();
-      isPlaying = false;
-    }
-  }
-
   React.useEffect(() => {
     return sound
       ? () => {
