@@ -1,6 +1,5 @@
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
-import { scheduleNotificationAsync } from './LocalNortification';
 
 
 export const storage: Storage = new Storage({
@@ -22,7 +21,6 @@ export const loadDate = async () => {
     .then(res => {
       const date = new Date(res);
       console.log(date);
-      scheduleNotificationAsync(date);
     }).catch(err => {
       console.log(err);
     })
@@ -33,6 +31,7 @@ export const saveDate = async (date: Date) => {
     key: 'Date',
     data: date,
   });
+  console.log('save complete');
 }
 
 export const saveDays = async (days: string[]) => {
@@ -40,4 +39,5 @@ export const saveDays = async (days: string[]) => {
     key: 'Days',
     data: days
   });
+  console.log('save complete');
 }

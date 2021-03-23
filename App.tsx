@@ -17,11 +17,13 @@ function Home({ navigation }) {
         <View style={styles.picker} >
           <DateTimePicker />
         </View>
-        <Button
-          type='outline'
-          title="Go to day option"
-          onPress={() => navigation.navigate('Details')}
-        />
+        <View style={styles.button} >
+          <Button
+            type='outline'
+            title="Go to day option"
+            onPress={() => navigation.navigate('Details')}
+          />
+        </View>
         <View style={styles.stop}>
           <MakeSound />
         </View>
@@ -37,11 +39,13 @@ function Details({ navigation }) {
     <View style={styles.container}>
       <ThemeProvider useDark={true}>
         <SelectDayOfTheWeek />
-        <Button
-          type='outline'
-          title="Go to Home"
-          onPress={() => navigation.navigate('Home')}
-        />
+        <View style={styles.button} >
+          <Button
+            type='outline'
+            title="Go to Home"
+            onPress={() => navigation.navigate('Home')}
+          />
+        </View>
       </ThemeProvider>
     </View>
   )
@@ -74,5 +78,8 @@ const styles = StyleSheet.create({
     flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    margin: 10
   }
 });
