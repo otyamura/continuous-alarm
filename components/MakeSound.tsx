@@ -7,12 +7,12 @@ let isPlaying :boolean = false;
 
 export const playSound = async () => {
   if (!isPlaying) {
-    console.log('Loading sound');
+    isPlaying = true;
+    console.log('loading sound');
     await sound.loadAsync(require('../assets/mp3/Alarm.mp3'));
     console.log('Playing sound');
     await sound.setIsLoopingAsync(true);
     await sound.playAsync();
-    isPlaying = true;
   }
 }
 
