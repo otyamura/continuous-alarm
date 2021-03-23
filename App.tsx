@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MakeSound from './components/MakeSound';
 import DateTimePicker from './components/DateTimePicker';
 import LocalNotification from './components/LocalNortification';
+import SelectDayOfTheWeek from './components/SelectDayOfTheWeek';
 
 
 function Home({ navigation }) {
@@ -33,6 +34,7 @@ function Details({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
+      <SelectDayOfTheWeek />
       <Button
         type='outline'
         title="Go to Home"
