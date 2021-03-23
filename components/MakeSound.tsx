@@ -46,6 +46,5 @@ export default function MakeSound() {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
   }
 });
