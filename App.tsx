@@ -27,13 +27,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     justifyContent: 'center',
   },
-  clock: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   stop: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   picker : {

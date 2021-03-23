@@ -44,7 +44,7 @@ const DateTimePicker = () => {
   return (
     <View>
       <Text style={styles.text}>{getFormatTime(date)}</Text>
-      <Button title='Set your alarm time' type='outline' onPress={showDatePicker} />
+      <Button title='Change alarm time' type='outline' onPress={showDatePicker} />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode='time'
