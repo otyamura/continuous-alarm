@@ -17,7 +17,7 @@ export const deleteDataList = () => {
 }
 
 export const loadDate = async () => {
-  const date = await storage
+  storage
     .load({ key: 'Date' })
     .then(res => {
       const date = new Date(res);

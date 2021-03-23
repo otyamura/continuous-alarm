@@ -7,7 +7,6 @@ export default function LocalNotification() {
   });
   return (
     <></>
-    // <Button title='3秒後にプッシュ通知する' onPress={scheduleNotificationAsync} />
   );
 }
 
@@ -40,6 +39,5 @@ export const scheduleNotificationAsync = async (date: Date) => {
 const requestPermissionsAsync = async () => {
   const { granted } = await Notifications.getPermissionsAsync();
   if (granted) { return }
-
   await Notifications.requestPermissionsAsync();
 }
