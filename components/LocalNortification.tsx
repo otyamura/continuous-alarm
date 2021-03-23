@@ -1,18 +1,14 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Button, Text, StyleSheet } from 'react-native';
+import { Button } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { playSound } from './MakeSound';
 
 export default function LocalNotification() {
-
-  const [date, setDate] = useState(new Date());
   React.useEffect(() => {
     requestPermissionsAsync();
     const subscription = Notifications.addNotificationReceivedListener(notifications => {
       playSound();
     });
-    console.log('update',date);
   });
 
   const oneMinuteNotificationAsync = () => {
@@ -21,28 +17,12 @@ export default function LocalNotification() {
     scheduleNotificationAsync(now);
   };
 
-  const getFormatTime = (date: Date) => {
-    const h = date.getHours();
-    const m = date.getMinutes();
-    const hm: string = h + ':' + m;
-    return hm;
-  }
 
   return (
     <>
-      <Text style={styles.text}>{getFormatTime(date)}</Text>
-      <Button title='after one minute notification' onPress={oneMinuteNotificationAsync} />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: 'white',
-    fontSize: 100,
-    fontWeight: 'bold'
-  }
-});
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
