@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Button, ThemeProvider } from 'react-native-elements';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MakeSound from './components/MakeSound';
@@ -13,19 +13,21 @@ import SelectDayOfTheWeek from './components/SelectDayOfTheWeek';
 function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.picker} >
-        <DateTimePicker />
-      </View>
-      <LocalNotification />
-      <Button
-        type='outline'
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-      <View style={styles.stop}>
-        <MakeSound />
-      </View>
-      <StatusBar style="auto" />
+      <ThemeProvider useDark={true}>
+        <View style={styles.picker} >
+          <DateTimePicker />
+        </View>
+        <Button
+          type='outline'
+          title="Go to day option"
+          onPress={() => navigation.navigate('Details')}
+        />
+        <View style={styles.stop}>
+          <MakeSound />
+        </View>
+        <StatusBar style="auto" />
+        <LocalNotification />
+      </ThemeProvider>
     </View>
   );
 }
@@ -33,13 +35,14 @@ function Home({ navigation }) {
 function Details({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <SelectDayOfTheWeek />
-      <Button
-        type='outline'
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
-      />
+      <ThemeProvider useDark={true}>
+        <SelectDayOfTheWeek />
+        <Button
+          type='outline'
+          title="Go to Home"
+          onPress={() => navigation.navigate('Home')}
+        />
+      </ThemeProvider>
     </View>
   )
 }
@@ -60,7 +63,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
     justifyContent: 'center',
   },
   stop: {
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picker: {
-    flex: 2,
+    flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Button, Text, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 const dayNames = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
@@ -19,24 +19,26 @@ export default function SelectDayOfTheWeek() {
     }
   }
   return (
-    <View>
-      <FlatList data={days} renderItem={({item}) => (
-        <CheckBox title={item.key} checked={item.value} onPress={() => {
-          const newDays = days.map(val => {
-            if (val.key === item.key) {
-              val.value = !val.value;
-            }
-            return {key: val.key, value:val.value}
-          })
-          setDays(newDays);
-        }} />
-      )}/>
-
+    <View style={styles.checkboxes}>
+        <FlatList data={days} renderItem={({ item }) => (
+          <CheckBox containerStyle={{ backgroundColor: 'black' }} center title={item.key} checked={item.value} onPress={() => {
+            const newDays = days.map(val => {
+              if (val.key === item.key) {
+                val.value = !val.value;
+              }
+              return { key: val.key, value: val.value }
+            })
+            setDays(newDays);
+          }} />
+        )} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  texts: {
+  checkboxes: {
+    backgroundColor: '#121212',
+    justifyContent: 'center',
+    padding: 30
   }
 })
