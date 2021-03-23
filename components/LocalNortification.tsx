@@ -11,12 +11,6 @@ export default function LocalNotification() {
     });
   });
 
-  const oneMinuteNotificationAsync = () => {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + 1);
-    scheduleNotificationAsync(now);
-  };
-
   return (
     <>
     </>
@@ -32,6 +26,7 @@ Notifications.setNotificationHandler({
 });
 
 export const scheduleNotificationAsync = async (date: Date) => {
+  Notifications.cancelAllScheduledNotificationsAsync();
   console.log('start');
   date.setSeconds(0);
   console.log('ceil', date);
@@ -39,7 +34,7 @@ export const scheduleNotificationAsync = async (date: Date) => {
   if (date.getTime() - now > 0) {
     await Notifications.scheduleNotificationAsync({
       content: {
-        body: 'test'
+        body: 'Wake Up!'
       },
       trigger: date
     }

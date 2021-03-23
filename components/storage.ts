@@ -34,3 +34,10 @@ export const saveDate = async (date: Date) => {
     data: date,
   });
 }
+
+export const saveDays = async (days: string[]) => {
+  storage.save({
+    key: 'Days',
+    data: days
+  });
+}
