@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Button } from 'react-native';
 import * as Notifications from 'expo-notifications';
-import { loadDate } from './storage';
 
 export default function LocalNotification() {
   React.useEffect(() => {
@@ -23,16 +21,20 @@ Notifications.setNotificationHandler({
 
 export const scheduleNotificationAsync = async (date: Date) => {
   console.log('start');
-  // const date = await loadDate();
-  console.log('test', date);
-  date.setSeconds(date.getSeconds() + 3);
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      body: 'test'
-    },
-    trigger: date
+  date.setSeconds(0);
+  console.log('ceil', date);
+  const now = Date.now();
+  if (date.getTime() - now > 0) {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        body: 'test'
+      },
+      trigger: date
+    }
+    );
+  } else {
+    console.warn('set time is old');
   }
-  );
 }
 
 const requestPermissionsAsync = async () => {

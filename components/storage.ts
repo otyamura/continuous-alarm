@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import { scheduleNotificationAsync } from './LocalNortification';
@@ -24,12 +23,9 @@ export const loadDate = async () => {
       const date = new Date(res);
       console.log(date);
       scheduleNotificationAsync(date);
-      return date;
     }).catch(err => {
       console.log(err);
-      return new Date();
     })
-  return date;
 }
 
 export const saveDate = async (date: Date) => {
