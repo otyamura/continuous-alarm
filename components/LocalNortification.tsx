@@ -18,7 +18,8 @@ export default function LocalNotification() {
   };
 
   return (
-    <Button title='after one minute notification' onPress={oneMinuteNotificationAsync} />
+    <>
+    </>
   );
 }
 

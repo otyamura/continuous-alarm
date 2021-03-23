@@ -9,9 +9,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.picker} >
+        <DateTimePicker />
+      </View>
       <LocalNotification />
-      <MakeSound />
-      <DateTimePicker />
+      <View style={styles.stop}>
+        <MakeSound />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -20,8 +24,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#121212',
+    justifyContent: 'center',
+  },
+  stop: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  picker : {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });

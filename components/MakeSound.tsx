@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 import { Audio } from 'expo-av';
 
 const sound = new Audio.Sound();
@@ -36,16 +37,19 @@ export default function MakeSound() {
       : undefined;
   }, [sound]);
   return (
-    <View style={styles.container}>
-      <Button title="play sound" onPress={playSound} />
-      <Button title='pause sound' onPress={pauseSound} />
+    <View>
+      <View style={styles.button}>
+        <Button title="play sound" type='outline' onPress={playSound} />
+      </View>
+      <View style={styles.button}>
+        <Button title='pause sound' type='outline' onPress={pauseSound} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
+  button: {
+    margin: 10
   }
 });
