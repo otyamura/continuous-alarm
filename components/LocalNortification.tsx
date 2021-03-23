@@ -1,12 +1,24 @@
 import * as React from 'react';
+import { Button } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { playSound } from './MakeSound';
 
 export default function LocalNotification() {
   React.useEffect(() => {
     requestPermissionsAsync();
+    const subscription = Notifications.addNotificationReceivedListener(notifications => {
+      playSound();
+    });
   });
+
+  const oneMinuteNotificationAsync = () => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 1);
+    scheduleNotificationAsync(now);
+  };
+
   return (
-    <></>
+    <Button title='after one minute notification' onPress={oneMinuteNotificationAsync} />
   );
 }
 

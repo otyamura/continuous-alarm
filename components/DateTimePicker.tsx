@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { playSound } from './MakeSound';
 import { loadDate, saveDate } from './storage';
 // import { deleteDataList } from './storage';
 
