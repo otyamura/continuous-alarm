@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MakeSound from './components/MakeSound';
 import DateTimePicker from './components/DateTimePicker';
 import LocalNotification from './components/LocalNortification';
 
 
-function Home({navigation}) {
+function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.picker} >
@@ -17,6 +17,7 @@ function Home({navigation}) {
       </View>
       <LocalNotification />
       <Button
+        type='outline'
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
       />
@@ -33,6 +34,7 @@ function Details({ navigation }) {
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <Button
+        type='outline'
         title="Go to Home"
         onPress={() => navigation.navigate('Home')}
       />
@@ -44,7 +46,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Details' component={Details} />
