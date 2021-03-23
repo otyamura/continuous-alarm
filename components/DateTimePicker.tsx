@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
+import { Button } from 'react-native-elements';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { loadDate, saveDate } from './storage';
 // import { deleteDataList } from './storage';
@@ -43,7 +44,7 @@ const DateTimePicker = () => {
   return (
     <View>
       <Text style={styles.text}>{getFormatTime(date)}</Text>
-      <Button title='show date picker' onPress={showDatePicker} />
+      <Button title='Set your alarm time' type='outline' onPress={showDatePicker} />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode='time'
@@ -58,7 +59,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 100,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    padding: 10
   }
 });
 
