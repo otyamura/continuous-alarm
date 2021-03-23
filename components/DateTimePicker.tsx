@@ -3,6 +3,7 @@ import { View, Text, StyleSheet} from 'react-native';
 import { Button } from 'react-native-elements';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { loadDate, saveDate } from './storage';
+import { scheduleNotificationAsync } from './LocalNortification';
 // import { deleteDataList } from './storage';
 
 const DateTimePicker = () => {
@@ -21,6 +22,7 @@ const DateTimePicker = () => {
   const handleConfirm = (date: Date) => {
     saveDate(date);
     setDate(date);
+    scheduleNotificationAsync(date);
     loadDate();
     hideDatePicker();
   };
