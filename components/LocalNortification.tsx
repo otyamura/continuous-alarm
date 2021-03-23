@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as Notifications from 'expo-notifications';
 import { playSound } from './MakeSound';
 import { storage } from './storage';
+import * as Device from 'expo-device';
 
 
 const dayNames = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
@@ -38,29 +39,41 @@ export const scheduleNotificationAsync = async (date: Date) => {
   const m = date.getMinutes();
   const d = date.getDay() + 1;
   if (date.getTime() - now > 0) {
-    storage
-      .load({ key: 'Days' })
-      .then(res => {
-        const dayNums :number[] = res.map(d => {
-          console.log('d', d);
-          for (const ind in dayNames) {
-            if (dayNames[ind] === d) return ind;
+    if (Device.brand === 'Apple') {
+      storage
+        .load({ key: 'Days' })
+        .then(res => {
+          const dayNums: number[] = res.map(d => {
+            console.log('d', d);
+            for (const ind in dayNames) {
+              if (dayNames[ind] === d) return ind;
+            }
+          })
+          console.log(dayNums);
+          if (dayNums.length) {
+            for (const dayNum of dayNums) {
+              console.log('setting ok');
+              // 1-indexなので+1
+              registNotification(h, m, dayNum * 1 + 1, true);
+            }
+          } else {
+            console.log('nannmo nai');
+            registNotification(h, m, d, false);
           }
-        })
-        console.log(dayNums);
-        if (dayNums.length) {
-          for (const dayNum of dayNums) {
-            console.log('setting ok');
-            // 1-indexなので+1
-            registNotification(h, m, dayNum * 1 + 1, true);
-          }
-        } else {
-          console.log('nannmo nai');
-          registNotification(h, m, d, false);
+        }).catch(err => {
+          console.log(err);
+        });
+    } else {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          body: 'Wake Up!'
+        },
+        trigger: {
+          date
         }
-      }).catch(err => {
-        console.log(err);
-      });
+      }
+      );
+    }
   } else {
     console.warn('set time is old');
   }
